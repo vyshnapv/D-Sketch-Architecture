@@ -39,7 +39,7 @@ function Services() {
   ];
 
   return (
-    <section className="bg-[#F8F7F4] py-24 overflow-hidden">
+    <section id="services" className="bg-[#F8F7F4] pt-24 pb-20 overflow-hidden">
       {/* Heading */}
 
      <div className="text-center mb-16 px-5" style={{ paddingTop: "40px" }}>
@@ -50,11 +50,6 @@ function Services() {
         <h2 className="text-5xl font-bold text-slate-900 mt-4">
           Our Services
         </h2>
-
-        <p className="max-w-2xl mx-auto mt-6 text-slate-500 leading-8 text-center italic font-serif tracking-wide text-[17px]">
-           We provide complete architecture, interior design and construction
-             services under one roof.
-        </p>
       </div>
 
       {/* Carousel */}
@@ -83,7 +78,7 @@ function Services() {
       >
         {services.map((service, index) => (
           <SwiperSlide key={index}>
-            <div className="group relative overflow-hidden rounded-3xl h-[500px] cursor-pointer">
+            <div className="group relative overflow-hidden rounded-3xl h-[350px] cursor-pointer">
               {/* Image */}
 
               <img
@@ -98,7 +93,7 @@ function Services() {
 
               {/* Content */}
 
-              <div className="absolute bottom-0 p-8 text-white">
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-white text-center">
                 <span className="text-amber-400 text-sm tracking-[4px]">
                   0{index + 1}
                 </span>
@@ -111,9 +106,7 @@ function Services() {
                   {service.desc}
                 </p>
 
-                <button className="mt-6 bg-amber-500 hover:bg-amber-600 px-6 py-3 rounded-full transition">
-                  Learn More
-                </button>
+
               </div>
             </div>
           </SwiperSlide>
