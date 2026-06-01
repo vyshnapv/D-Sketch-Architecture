@@ -18,17 +18,17 @@ function Home() {
             Architecture & Interior Design
           </p>
 
-          <h1 className="text-white text-5xl md:text-7xl font-bold leading-tight max-w-4xl">
+          <h1 className="text-white text-5xl md:text-7xl font-bold leading-tight text-center max-w-4xl">
             Designing Spaces That Inspire
           </h1>
 
-          <p className="text-gray-200 text-lg mt-6 max-w-2xl leading-relaxed">
+          <p className="text-gray-200 text-lg text-center mt-6 max-w-2xl leading-relaxed">
             Transforming ideas into timeless architecture, elegant interiors,
             and innovative living spaces.
           </p>
 
           {/* Premium Buttons */}
-          <div className="flex flex-wrap gap-6 mt-10">
+          <div className="flex flex-wrap justify-center gap-6 mt-10">
   {/* View Projects Button */}
   <button className="group relative overflow-hidden px-20 py-7 min-w-[260px] rounded-full border-2 border-white text-white font-medium text-base backdrop-blur-sm bg-white/10 transition-all duration-500 hover:bg-white hover:text-black hover:scale-105 hover:shadow-xl">
     <span className="relative z-10 flex items-center justify-center gap-2">

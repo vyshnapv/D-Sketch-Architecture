@@ -39,22 +39,26 @@ function Services() {
   ];
 
   return (
-    <section id="services" className="bg-[#F8F7F4] pt-24 pb-20 overflow-hidden">
+    <section id="services" className="bg-[#F8F7F4] pt-24 pb-20 overflow-visible">
       {/* Heading */}
 
-     <div className="text-center mb-16 px-5" style={{ paddingTop: "40px" }}>
-        <p className="uppercase tracking-[7px] text-amber-800 text-sm font-medium mt-6">
+      <div className="text-center mb-16 px-5" style={{ paddingTop: "30px",paddingBottom:"30px" }}>
+        <p className="uppercase tracking-[7px] text-amber-800 text-sm font-medium mt-6 ">
           What We Offer
         </p>
 
         <h2 className="text-5xl font-bold text-slate-900 mt-4">
           Our Services
         </h2>
+        <p className="text-gray-600 leading-8 font-light text-center">
+            We deliver innovative architectural, interior design, construction,
+           and visualization solutions tailored to create beautiful and functional spaces.
+        </p>
       </div>
 
       {/* Carousel */}
 
-      <Swiper 
+      <Swiper
         modules={[Autoplay, Navigation]}
         navigation
         autoplay={{
@@ -79,7 +83,7 @@ function Services() {
         {services.map((service, index) => (
           <SwiperSlide key={index}>
             <div className="group relative overflow-hidden rounded-3xl h-[350px] cursor-pointer">
-              {/* Image */}
+              {/* Image */} 
 
               <img
                 src={service.image}
@@ -105,13 +109,12 @@ function Services() {
                 <p className="mt-4 text-gray-300 leading-7">
                   {service.desc}
                 </p>
-
-
               </div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
+      <div className="h-12 bg-[#F8F7F4]"></div>
     </section>
   );
 }

@@ -24,13 +24,13 @@ function Navbar() {
   useEffect(() => {
     let observer;
     const timer = setTimeout(() => {
-      const sectionIds = navLinks.map(link => link.toLowerCase());
-      const sections = sectionIds.map(id => document.getElementById(id));
+      const sectionIds = navLinks.map((link) => link.toLowerCase());
+      const sections = sectionIds.map((id) => document.getElementById(id));
 
       const observerOptions = {
         root: null,
         rootMargin: "-40% 0px -40% 0px",
-        threshold: 0
+        threshold: 0,
       };
 
       observer = new IntersectionObserver((entries) => {
@@ -50,9 +50,7 @@ function Navbar() {
 
     return () => {
       clearTimeout(timer);
-      if (observer) {
-        observer.disconnect();
-      }
+      if (observer) observer.disconnect();
     };
   }, []);
 
@@ -139,7 +137,12 @@ function Navbar() {
           font-size: clamp(1.9rem, 3.5vw, 2.9rem);
           line-height: 1;
         }
-        .nb-logo-dash { color: rgba(255,255,255,0.25); font-weight: 300; font-size: clamp(1.4rem, 2.5vw, 2rem); margin: 0 1px; }
+        .nb-logo-dash {
+          color: rgba(255,255,255,0.25);
+          font-weight: 300;
+          font-size: clamp(1.4rem, 2.5vw, 2rem);
+          margin: 0 1px;
+        }
         .nb-logo-sketch { color: #fff; }
         .nb-logo-tag { display: flex; align-items: center; gap: 6px; margin-top: 3px; }
         .nb-logo-line { width: 18px; height: 1px; background: #f59e0b; flex-shrink: 0; }
@@ -152,7 +155,13 @@ function Navbar() {
         }
 
         /* ── DESKTOP NAV ── */
-        .nb-nav { display: flex; align-items: center; gap: 0.15rem; flex: 1; justify-content: center; }
+        .nb-nav {
+          display: flex;
+          align-items: center;
+          gap: 0.15rem;
+          flex: 1;
+          justify-content: center;
+        }
         .nb-link {
           position: relative;
           font-size: clamp(0.7rem, 1vw, 0.78rem);
@@ -171,7 +180,8 @@ function Navbar() {
           content: '';
           position: absolute; inset: 0;
           background: rgba(255,255,255,0.06);
-          border-radius: 3px; opacity: 0;
+          border-radius: 3px;
+          opacity: 0;
           transition: opacity 0.2s;
         }
         .nb-link:hover::before { opacity: 1; }
@@ -191,7 +201,13 @@ function Navbar() {
         .nb-link.nb-active { color: #fff; font-weight: 500; }
 
         /* ── CTA ── */
-        .nb-cta-wrap { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+        .nb-cta-wrap {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          flex-shrink: 0;
+          margin-left: auto;
+        }
         .nb-cta {
           position: relative;
           display: flex; align-items: center; gap: 9px;
@@ -237,10 +253,15 @@ function Navbar() {
           transition: background 0.2s, border-color 0.2s;
           flex-shrink: 0;
         }
-        .nb-ham:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.25); }
+        .nb-ham:hover {
+          background: rgba(255,255,255,0.1);
+          border-color: rgba(255,255,255,0.25);
+        }
         .nb-ham span {
-          display: block; height: 1.5px;
-          background: #fff; border-radius: 2px;
+          display: block;
+          height: 1.5px;
+          background: #fff;
+          border-radius: 2px;
           transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
           transform-origin: center;
         }
@@ -332,13 +353,16 @@ function Navbar() {
         }
         .nb-drawer-link-left { display: flex; align-items: center; gap: 12px; }
         .nb-drawer-link-num {
-          font-size: 0.6rem; font-weight: 300;
+          font-size: 0.6rem;
+          font-weight: 300;
           color: rgba(255,255,255,0.2);
-          letter-spacing: 0.05em; width: 16px;
+          letter-spacing: 0.05em;
+          width: 16px;
           transition: color 0.18s;
         }
         .nb-drawer-link-text {
-          font-size: 1.05rem; font-weight: 400;
+          font-size: 1.05rem;
+          font-weight: 400;
           color: rgba(255,255,255,0.6);
           letter-spacing: 0.02em;
           transition: color 0.18s;
@@ -359,7 +383,8 @@ function Navbar() {
         .nb-drawer-link.nb-active .nb-drawer-link-num { color: rgba(245,158,11,0.5); }
         .nb-drawer-link:hover .nb-drawer-link-arr,
         .nb-drawer-link.nb-active .nb-drawer-link-arr {
-          color: #f59e0b; transform: translateX(3px);
+          color: #f59e0b;
+          transform: translateX(3px);
         }
         .nb-drawer-link.nb-active .nb-drawer-link-text { font-weight: 500; }
 
@@ -371,12 +396,16 @@ function Navbar() {
         }
         .nb-drawer-cta {
           width: 100%;
-          background: #f59e0b; color: #000;
-          border: none; padding: 1rem;
+          background: #f59e0b;
+          color: #000;
+          border: none;
+          padding: 1rem;
           border-radius: 5px;
           font-family: 'Outfit', sans-serif;
-          font-size: 0.85rem; font-weight: 600;
-          cursor: pointer; letter-spacing: 0.06em;
+          font-size: 0.85rem;
+          font-weight: 600;
+          cursor: pointer;
+          letter-spacing: 0.06em;
           text-transform: uppercase;
           transition: background 0.2s, transform 0.15s;
           margin-bottom: 1.25rem;
@@ -386,39 +415,46 @@ function Navbar() {
         .nb-drawer-foot {
           font-size: 0.65rem;
           color: rgba(255,255,255,0.2);
-          letter-spacing: 0.12em; text-transform: uppercase;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
           text-align: center;
         }
 
-        /* ── BREAKPOINTS ── */
+        /* ════════════════════════════════
+           BREAKPOINTS
+        ════════════════════════════════ */
 
-        /* Large desktops: full layout */
-        @media (min-width: 1200px) {
+        /* Large desktops ≥ 1400px: full layout with generous padding */
+        @media (min-width: 1400px) {
           .nb-inner { padding: 0 3rem; }
         }
 
-        /* Medium desktops / wide tablets (961px–1199px): tighter spacing */
-        @media (max-width: 1199px) and (min-width: 961px) {
+        /* Medium desktops 1101px–1399px: tighter spacing so everything fits */
+        @media (max-width: 1399px) and (min-width: 1101px) {
           .nb-inner { padding: 0 2rem; }
           .nb-link { padding: 0.55rem 0.7rem; }
           .nb-cta { padding: 0.6rem 1rem; }
         }
 
-        /* Tablets & small desktops (769px–960px): hide nav text, show hamburger */
-        @media (max-width: 960px) {
-          .nb-nav, .nb-cta-wrap { display: none !important; }
+        /* ─── KEY FIX ───
+           At ≤ 1100px the desktop nav + CTA no longer fit alongside the logo.
+           Hide them and show the hamburger instead.
+        ──────────────── */
+        @media (max-width: 1100px) {
+          .nb-nav,
+          .nb-cta-wrap { display: none !important; }
           .nb-ham { display: flex; }
           .nb-overlay { display: block; }
           .nb-inner { padding: 0 1.5rem; }
         }
 
-        /* Large phones (481px–768px) */
+        /* Large phones 481px–768px */
         @media (max-width: 768px) {
           .nb-inner { padding: 0 1.25rem; height: 76px; }
           .nb-root.nb-scrolled .nb-inner { height: 62px; }
         }
 
-        /* Small phones (361px–480px) */
+        /* Small phones 361px–480px */
         @media (max-width: 480px) {
           .nb-logo-main { font-size: 1.9rem; }
           .nb-logo-d { font-size: 2.3rem; }
@@ -429,7 +465,7 @@ function Navbar() {
           .nb-drawer-head { margin-bottom: 1.75rem; }
         }
 
-        /* Extra small phones (≤360px) */
+        /* Extra small phones ≤ 360px */
         @media (max-width: 360px) {
           .nb-logo-main { font-size: 1.6rem; }
           .nb-logo-d { font-size: 1.95rem; }
@@ -443,7 +479,7 @@ function Navbar() {
           .nb-drawer-link-text { font-size: 0.95rem; }
         }
 
-        /* Very wide / 4K screens */
+        /* Very wide / 4K screens ≥ 1800px */
         @media (min-width: 1800px) {
           .nb-inner { max-width: 1600px; padding: 0 4rem; }
           .nb-logo-main { font-size: 2.8rem; }
@@ -456,10 +492,7 @@ function Navbar() {
         @media (max-height: 500px) and (orientation: landscape) {
           .nb-inner { height: 60px; }
           .nb-root.nb-scrolled .nb-inner { height: 52px; }
-          .nb-drawer {
-            padding: 1rem 1.5rem 1.25rem;
-            overflow-y: auto;
-          }
+          .nb-drawer { padding: 1rem 1.5rem 1.25rem; overflow-y: auto; }
           .nb-drawer-head { margin-bottom: 1.25rem; }
           .nb-drawer-link { min-height: 44px; padding: 0.65rem 1rem; }
           .nb-drawer-link-text { font-size: 0.9rem; }
@@ -506,7 +539,12 @@ function Navbar() {
             aria-label="Close menu"
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+              <path
+                d="M1 1L13 13M13 1L1 13"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
             </svg>
           </button>
         </div>
@@ -529,7 +567,10 @@ function Navbar() {
         </div>
 
         <div className="nb-drawer-bottom">
-          <button className="nb-drawer-cta" onClick={() => { handleQuoteClick(); closeMenu(); }}>
+          <button
+            className="nb-drawer-cta"
+            onClick={() => { handleQuoteClick(); closeMenu(); }}
+          >
             Get Free Quote
           </button>
           <div className="nb-drawer-foot">© 2025 D-Sketch Architecture</div>
@@ -568,23 +609,33 @@ function Navbar() {
             ))}
           </nav>
 
-          {/* CTA */}
+          {/* CTA — hidden at ≤ 1100px via CSS */}
           <div className="nb-cta-wrap">
             <button className="nb-cta" onClick={handleQuoteClick}>
               <span>Get Free Quote</span>
-              <svg className="nb-cta-arrow" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                <path d="M1 7H13M8 2L13 7L8 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <svg
+                className="nb-cta-arrow"
+                viewBox="0 0 14 14"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M1 7H13M8 2L13 7L8 12"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </button>
           </div>
 
-          {/* Hamburger */}
+          {/* Hamburger — shown at ≤ 1100px via CSS */}
           <button
             className={`nb-ham ${menuOpen ? "nb-open" : ""}`}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
-            aria-controls="nb-drawer"
           >
             <span /><span /><span />
           </button>

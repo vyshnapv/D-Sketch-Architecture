@@ -10,10 +10,15 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: sans-serif;
-}
-
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  overflow-x: hidden;
+  max-width: 100%;
+  position: relative;
 }

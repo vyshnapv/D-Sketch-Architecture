@@ -188,43 +188,6 @@ function Projects() {
         </div>
       </div>
 
-      {/* ── FILTER TABS ── */}
-      <div
-        style={{
-          background: "white",
-          borderBottom: "1px solid #e2e8f0",
-          padding: "0 80px",
-          display: "flex",
-          gap: 0,
-          position: "sticky",
-          top: 0,
-          zIndex: 10,
-        }}
-      >
-        {CATEGORIES.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setActive(cat)}
-            style={{
-              background: "none",
-              border: "none",
-              padding: "22px 28px",
-              fontSize: 11,
-              letterSpacing: 3,
-              textTransform: "uppercase",
-              fontFamily: "'DM Sans', sans-serif",
-              cursor: "pointer",
-              color: active === cat ? "#d97706" : "#64748b",
-              borderBottom: active === cat ? "2px solid #d97706" : "2px solid transparent",
-              fontWeight: active === cat ? 600 : 400,
-              transition: "all 0.2s",
-            }}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
       {/* ── GRID ── */}
       <div
         style={{

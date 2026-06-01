@@ -16,8 +16,8 @@ const INFO = [
   {
     icon: "📞",
     label: "Phone",
-    lines: ["08867856605"],
-    link: "tel:08867856605",
+    lines: ["9207045332"],
+    link: "tel:9207045332",
     linkText: "Call Now →",
   },
   {
