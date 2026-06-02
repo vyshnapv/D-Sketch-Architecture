@@ -39,7 +39,7 @@ function About() {
       </div>
 
       {/* ── SECTION 2: Stats Bar ── */}
-      <div className="stats-bar" style={{ background: "#0f172a", padding: "48px 64px", display: "grid", gridTemplateColumns: "repeat(4,1fr)" }}>
+      <div className="stats-bar" style={{ background: "#0f172a", padding: "48px 64px", display: "grid" }}>
         {[
           { num: "300+", label: "Projects Completed" },
           { num: "150+", label: "Happy Clients" },

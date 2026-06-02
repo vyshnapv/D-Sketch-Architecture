@@ -86,15 +86,7 @@ function Projects() {
       style={{ fontFamily: "'DM Sans', sans-serif", background: "#f8f7f4" }}
     >
       {/* ── HERO ── */}
-      <div
-        style={{
-          position: "relative",
-          height: 440,
-          overflow: "hidden",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
+      <div className="projects-hero">
         <img
           src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600&q=80"
           alt="Projects Hero"
@@ -110,93 +102,112 @@ function Projects() {
           style={{
             position: "absolute",
             inset: 0,
-            background: "rgba(15,23,42,0.65)",
+            background: "linear-gradient(135deg, rgba(15,23,42,0.8) 0%, rgba(15,23,42,0.5) 100%)",
           }}
         />
-        <div style={{ position: "relative", padding: "0 80px" }}>
-          <p
-            style={{
-              fontSize: 11,
-              letterSpacing: 6,
-              textTransform: "uppercase",
-              color: "#d97706",
-              fontWeight: 500,
-              marginBottom: 18,
-            }}
-          >
-            Our Work
-          </p>
-          <h1
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(2.5rem, 5vw, 4rem)",
-              fontWeight: 700,
-              color: "white",
-              lineHeight: 1.15,
-              margin: 0,
-            }}
-          >
-            Projects That
-            <br />
-            <span style={{ color: "#d97706", fontStyle: "italic" }}>
-              Define Spaces
-            </span>
-          </h1>
-          <div
-            style={{
-              width: 60,
-              height: 3,
-              background: "#d97706",
-              marginTop: 28,
-            }}
-          />
-        </div>
 
-        {/* bottom count badge */}
-        <div
-          style={{
-            position: "absolute",
-            right: 80,
-            bottom: 48,
-            background: "#d97706",
-            padding: "20px 32px",
-            textAlign: "center",
-          }}
-        >
-          <div
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: 38,
-              fontWeight: 700,
-              color: "white",
-              lineHeight: 1,
-            }}
-          >
-            300+
+        {/* Hero content wrapper */}
+        <div className="projects-hero-content">
+          <div className="projects-hero-text">
+            <p
+              style={{
+                fontSize: 11,
+                letterSpacing: 6,
+                textTransform: "uppercase",
+                color: "#d97706",
+                fontWeight: 500,
+                marginBottom: 18,
+              }}
+            >
+              Our Work
+            </p>
+            <h1
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: "clamp(2.2rem, 5vw, 4rem)",
+                fontWeight: 700,
+                color: "white",
+                lineHeight: 1.15,
+                margin: 0,
+              }}
+            >
+              Projects That
+              <br />
+              <span style={{ color: "#d97706", fontStyle: "italic" }}>
+                Define Spaces
+              </span>
+            </h1>
+            <div
+              style={{
+                width: 60,
+                height: 3,
+                background: "#d97706",
+                marginTop: 28,
+              }}
+            />
+
+            {/* CTA Buttons */}
+            <div className="projects-hero-buttons">
+              <a
+                href="#projects-grid"
+                className="projects-btn projects-btn-primary"
+              >
+                <span className="projects-btn-text">View Projects</span>
+                <span className="projects-btn-arrow">↓</span>
+              </a>
+              <a
+                href="#contact"
+                className="projects-btn projects-btn-outline"
+              >
+                <span className="projects-btn-text">Contact Us</span>
+                <span className="projects-btn-arrow">→</span>
+              </a>
+            </div>
           </div>
-          <div
-            style={{
-              fontSize: 10,
-              letterSpacing: 3,
-              textTransform: "uppercase",
-              color: "rgba(255,255,255,0.85)",
-              marginTop: 6,
-            }}
-          >
-            Projects Delivered
+
+          {/* Count badge — in flow, not absolutely positioned */}
+          <div className="projects-hero-badge">
+            <div
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: 42,
+                fontWeight: 700,
+                color: "white",
+                lineHeight: 1,
+              }}
+            >
+              300+
+            </div>
+            <div
+              style={{
+                fontSize: 10,
+                letterSpacing: 3,
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.85)",
+                marginTop: 6,
+              }}
+            >
+              Projects Delivered
+            </div>
           </div>
         </div>
       </div>
 
+      {/* ── FILTER TABS ── */}
+      <div className="projects-filters">
+        {CATEGORIES.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setActive(cat)}
+            className={`projects-filter-btn ${active === cat ? "active" : ""}`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
       {/* ── GRID ── */}
-      <div
-        style={{
-          padding: "72px 80px",
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: 2,
-        }}
-      >
+      <div id="projects-grid" className="projects-grid">
         {filtered.map((project, i) => (
           <ProjectCard
             key={project.id}
@@ -212,6 +223,251 @@ function Projects() {
       {selected && (
         <Lightbox project={selected} onClose={() => setSelected(null)} />
       )}
+
+      {/* ── RESPONSIVE STYLES ── */}
+      <style>{`
+        /* ── Hero ── */
+        .projects-hero {
+          position: relative;
+          min-height: 480px;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+        }
+        .projects-hero-content {
+          position: relative;
+          width: 100%;
+          padding: 80px 80px 60px;
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+          gap: 40px;
+        }
+        .projects-hero-text {
+          flex: 1;
+          min-width: 0;
+        }
+
+        /* ── CTA Buttons ── */
+        .projects-hero-buttons {
+          display: flex;
+          gap: 16px;
+          margin-top: 36px;
+          flex-wrap: wrap;
+        }
+        .projects-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 16px 32px;
+          font-size: 12px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          font-weight: 600;
+          font-family: 'DM Sans', sans-serif;
+          text-decoration: none;
+          cursor: pointer;
+          transition: all 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+          position: relative;
+          overflow: hidden;
+        }
+        .projects-btn-primary {
+          background: #d97706;
+          color: white;
+          border: 2px solid #d97706;
+        }
+        .projects-btn-primary:hover {
+          background: #b45309;
+          border-color: #b45309;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(217,119,6,0.35);
+        }
+        .projects-btn-outline {
+          background: rgba(255,255,255,0.08);
+          color: white;
+          border: 2px solid rgba(255,255,255,0.35);
+          backdrop-filter: blur(8px);
+        }
+        .projects-btn-outline:hover {
+          background: white;
+          color: #0f172a;
+          border-color: white;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(255,255,255,0.2);
+        }
+        .projects-btn-arrow {
+          font-size: 16px;
+          line-height: 1;
+          transition: transform 0.3s;
+        }
+        .projects-btn:hover .projects-btn-arrow {
+          transform: translateX(4px);
+        }
+        .projects-btn-primary:hover .projects-btn-arrow {
+          transform: translateY(2px);
+        }
+
+        /* ── Badge ── */
+        .projects-hero-badge {
+          flex-shrink: 0;
+          background: #d97706;
+          padding: 24px 36px;
+          text-align: center;
+        }
+
+        /* ── Filter Tabs ── */
+        .projects-filters {
+          display: flex;
+          justify-content: center;
+          gap: 8px;
+          padding: 32px 40px 0;
+          flex-wrap: wrap;
+        }
+        .projects-filter-btn {
+          background: transparent;
+          border: 1.5px solid #cbd5e1;
+          padding: 10px 24px;
+          font-size: 11px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          font-weight: 600;
+          font-family: 'DM Sans', sans-serif;
+          color: #64748b;
+          cursor: pointer;
+          transition: all 0.25s;
+        }
+        .projects-filter-btn:hover {
+          border-color: #d97706;
+          color: #d97706;
+        }
+        .projects-filter-btn.active {
+          background: #d97706;
+          border-color: #d97706;
+          color: white;
+        }
+
+        /* ── Grid ── */
+        .projects-grid {
+          padding: 40px 80px 72px;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2px;
+        }
+
+        /* ── Project Card wide ── */
+        .project-card-wide {
+          grid-column: span 2;
+          aspect-ratio: 16/7;
+        }
+        .project-card-normal {
+          grid-column: span 1;
+          aspect-ratio: 4/3;
+        }
+
+        /* ── Lightbox ── */
+        .lightbox-inner {
+          background: white;
+          max-width: 900px;
+          width: 100%;
+          display: flex;
+          max-height: 90vh;
+          overflow: hidden;
+        }
+        .lightbox-image {
+          width: 55%;
+          flex-shrink: 0;
+        }
+        .lightbox-detail {
+          flex: 1;
+          padding: 48px 40px;
+          overflow-y: auto;
+          display: flex;
+          flex-direction: column;
+        }
+
+        /* ── TABLET — max-width: 1024px ── */
+        @media (max-width: 1024px) {
+          .projects-hero-content {
+            padding: 60px 48px 48px;
+            flex-direction: column;
+            align-items: flex-start;
+          }
+          .projects-hero-badge {
+            align-self: flex-start;
+          }
+          .projects-grid {
+            padding: 40px 48px 60px;
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .project-card-wide {
+            grid-column: span 2;
+            aspect-ratio: 16/7;
+          }
+        }
+
+        /* ── MOBILE — max-width: 600px ── */
+        @media (max-width: 600px) {
+          .projects-hero {
+            min-height: 520px;
+          }
+          .projects-hero-content {
+            padding: 100px 24px 40px;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-end;
+          }
+          .projects-hero-badge {
+            padding: 16px 24px;
+          }
+          .projects-hero-badge > div:first-child {
+            font-size: 32px !important;
+          }
+          .projects-hero-buttons {
+            flex-direction: column;
+            width: 100%;
+            gap: 12px;
+          }
+          .projects-btn {
+            justify-content: center;
+            padding: 14px 24px;
+            width: 100%;
+            box-sizing: border-box;
+          }
+          .projects-filters {
+            padding: 24px 16px 0;
+            gap: 6px;
+          }
+          .projects-filter-btn {
+            padding: 8px 16px;
+            font-size: 10px;
+          }
+          .projects-grid {
+            padding: 24px 16px 48px;
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+          .project-card-wide {
+            grid-column: span 1;
+            aspect-ratio: 4/3;
+          }
+          .project-card-normal {
+            aspect-ratio: 4/3;
+          }
+          .lightbox-inner {
+            flex-direction: column;
+            max-height: 95vh;
+            overflow-y: auto;
+          }
+          .lightbox-image {
+            width: 100%;
+            height: 240px;
+            flex-shrink: 0;
+          }
+          .lightbox-detail {
+            padding: 28px 24px;
+          }
+        }
+      `}</style>
     </section>
   );
 }
@@ -222,15 +478,14 @@ function ProjectCard({ project, onOpen, wide }) {
 
   return (
     <div
+      className={wide ? "project-card-wide" : "project-card-normal"}
       onClick={onOpen}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        gridColumn: wide ? "span 2" : "span 1",
         position: "relative",
         overflow: "hidden",
         cursor: "pointer",
-        aspectRatio: wide ? "16/7" : "4/3",
       }}
     >
       <img
@@ -258,15 +513,15 @@ function ProjectCard({ project, onOpen, wide }) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-end",
-          padding: 32,
+          padding: "clamp(16px, 4vw, 32px)",
         }}
       >
         {/* category pill */}
         <div
           style={{
             position: "absolute",
-            top: 24,
-            left: 24,
+            top: "clamp(12px, 3vw, 24px)",
+            left: "clamp(12px, 3vw, 24px)",
             background: "#d97706",
             padding: "5px 14px",
             fontSize: 10,
@@ -282,7 +537,7 @@ function ProjectCard({ project, onOpen, wide }) {
         <h3
           style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: wide ? 28 : 22,
+            fontSize: "clamp(18px, 2.5vw, 28px)",
             fontWeight: 700,
             color: "white",
             margin: "0 0 8px",
@@ -358,22 +613,15 @@ function Lightbox({ project, onClose }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: 40,
+        padding: "clamp(16px, 4vw, 40px)",
       }}
     >
       <div
+        className="lightbox-inner"
         onClick={(e) => e.stopPropagation()}
-        style={{
-          background: "white",
-          maxWidth: 900,
-          width: "100%",
-          display: "flex",
-          maxHeight: "90vh",
-          overflow: "hidden",
-        }}
       >
         {/* image */}
-        <div style={{ width: "55%", flexShrink: 0 }}>
+        <div className="lightbox-image">
           <img
             src={project.image}
             alt={project.title}
@@ -382,15 +630,7 @@ function Lightbox({ project, onClose }) {
         </div>
 
         {/* detail */}
-        <div
-          style={{
-            flex: 1,
-            padding: "48px 40px",
-            overflowY: "auto",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
+        <div className="lightbox-detail">
           <div style={{ marginBottom: "auto" }}>
             <p
               style={{
@@ -407,7 +647,7 @@ function Lightbox({ project, onClose }) {
             <h2
               style={{
                 fontFamily: "'Playfair Display', serif",
-                fontSize: 28,
+                fontSize: "clamp(22px, 3vw, 28px)",
                 fontWeight: 700,
                 color: "#0f172a",
                 margin: "0 0 24px",
@@ -475,7 +715,10 @@ function Lightbox({ project, onClose }) {
               cursor: "pointer",
               fontFamily: "'DM Sans', sans-serif",
               alignSelf: "flex-start",
+              transition: "background 0.25s",
             }}
+            onMouseEnter={(e) => (e.target.style.background = "#b45309")}
+            onMouseLeave={(e) => (e.target.style.background = "#d97706")}
           >
             Close
           </button>

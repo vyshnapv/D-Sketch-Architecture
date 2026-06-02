@@ -33,23 +33,21 @@ function Home() {
 
           {/* Buttons */}
           <div className="flex flex-wrap justify-center gap-4 mt-8">
-            
-            {/* View Projects Button */}
-            <button className="group relative overflow-hidden px-10 py-4 min-w-[180px] rounded-full border-2 border-white text-white font-medium text-sm backdrop-blur-sm bg-white/10 transition-all duration-500 hover:bg-white hover:text-black hover:scale-105 hover:shadow-xl">
-              <span className="relative z-10 flex items-center justify-center">
-                View Projects
-              </span>
-
-              <span className="absolute top-0 left-[-100%] w-full h-full bg-white/20 skew-x-12 transition-all duration-700 group-hover:left-[120%]"></span>
-            </button>
+            {/* Our Services Button */}
+            <a
+              href="#services"
+              className="inline-flex items-center justify-center px-10 py-4 min-w-[180px] bg-[#d97706] border-2 border-[#d97706] rounded-md text-white font-semibold text-sm uppercase tracking-wider transition-all duration-300 hover:bg-[#b45309] hover:border-[#b45309] hover:scale-105 hover:shadow-lg"
+            >
+              Our Services
+            </a>
 
             {/* Contact Button */}
-            <button className="group px-10 py-4 min-w-[180px] rounded-full border-2 border-white text-white font-medium text-sm backdrop-blur-sm bg-white/10 transition-all duration-500 hover:bg-white hover:text-black hover:scale-105 hover:shadow-xl">
-              <span className="flex items-center justify-center">
-                Contact Us
-              </span>
-            </button>
-
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center px-10 py-4 min-w-[180px] bg-white/10 border-2 border-white/30 rounded-md text-white font-semibold text-sm uppercase tracking-wider backdrop-blur-sm transition-all duration-300 hover:bg-white hover:text-slate-900 hover:scale-105 hover:shadow-lg"
+            >
+              Contact Us
+            </a>
           </div>
         </div>
       </div>
