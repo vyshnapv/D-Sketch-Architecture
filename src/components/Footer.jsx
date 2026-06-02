@@ -18,8 +18,8 @@ const SERVICES = [
 ];
 
 const SOCIALS = [
-  { name: "Instagram", href: "#" },
-  { name: "Facebook", href: "#" },
+  { name: "Instagram", href: "https://www.instagram.com/" },
+  { name: "Facebook", href: "https://www.facebook.com/" },
   { name: "WhatsApp", href: "https://wa.me/919207045332" },
 ];
 
@@ -80,8 +80,8 @@ function Footer() {
               <a
                 key={s.name}
                 href={s.href}
-                target={s.name === "WhatsApp" ? "_blank" : undefined}
-                rel={s.name === "WhatsApp" ? "noopener noreferrer" : undefined}
+                target="_blank"
+                rel="noopener noreferrer"
                 onMouseEnter={() => setHoveredLink(s.name)}
                 onMouseLeave={() => setHoveredLink(null)}
                 style={{

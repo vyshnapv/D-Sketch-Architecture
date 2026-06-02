@@ -258,47 +258,7 @@ function Contact() {
             </div>
           ))}
 
-          {/* social strip */}
-          <div style={{ marginTop: "auto", borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 32 }}>
-            <p
-              style={{
-                fontSize: 10,
-                letterSpacing: 3,
-                textTransform: "uppercase",
-                color: "#475569",
-                marginBottom: 16,
-              }}
-            >
-              Follow Us
-            </p>
-            <div style={{ display: "flex", gap: 16 }}>
-              {["Instagram", "Facebook", "WhatsApp"].map((s) => (
-                <a
-                  key={s}
-                  href="#"
-                  style={{
-                    fontSize: 11,
-                    letterSpacing: 1,
-                    color: "#94a3b8",
-                    textDecoration: "none",
-                    padding: "8px 14px",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                    transition: "all 0.2s",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.borderColor = "#d97706";
-                    e.target.style.color = "#d97706";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.borderColor = "rgba(255,255,255,0.1)";
-                    e.target.style.color = "#94a3b8";
-                  }}
-                >
-                  {s}
-                </a>
-              ))}
-            </div>
-          </div>
+         
         </div>
 
         {/* ── RIGHT: FORM ── */}

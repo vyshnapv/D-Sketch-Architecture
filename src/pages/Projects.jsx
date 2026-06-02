@@ -351,7 +351,7 @@ function Projects() {
           padding: 40px 80px 72px;
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 2px;
+          gap: 6px;
         }
 
         /* ── Project Card wide ── */
@@ -398,6 +398,7 @@ function Projects() {
           .projects-grid {
             padding: 40px 48px 60px;
             grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
           }
           .project-card-wide {
             grid-column: span 2;
@@ -444,14 +445,14 @@ function Projects() {
           .projects-grid {
             padding: 24px 16px 48px;
             grid-template-columns: 1fr;
-            gap: 12px;
+            gap: 14px;
           }
           .project-card-wide {
             grid-column: span 1;
-            aspect-ratio: 4/3;
+            aspect-ratio: 3/4;
           }
           .project-card-normal {
-            aspect-ratio: 4/3;
+            aspect-ratio: 3/4;
           }
           .lightbox-inner {
             flex-direction: column;
@@ -486,6 +487,7 @@ function ProjectCard({ project, onOpen, wide }) {
         position: "relative",
         overflow: "hidden",
         cursor: "pointer",
+        borderRadius: 4,
       }}
     >
       <img
@@ -507,21 +509,21 @@ function ProjectCard({ project, onOpen, wide }) {
           position: "absolute",
           inset: 0,
           background: hovered
-            ? "rgba(15,23,42,0.75)"
-            : "rgba(15,23,42,0.35)",
+            ? "linear-gradient(to top, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.55) 50%, rgba(15,23,42,0.15) 100%)"
+            : "linear-gradient(to top, rgba(15,23,42,0.80) 0%, rgba(15,23,42,0.20) 40%, transparent 100%)",
           transition: "background 0.4s",
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-end",
-          padding: "clamp(16px, 4vw, 32px)",
+          padding: 0,
         }}
       >
-        {/* category pill */}
+        {/* category pill — absolutely positioned top-left */}
         <div
           style={{
             position: "absolute",
-            top: "clamp(12px, 3vw, 24px)",
-            left: "clamp(12px, 3vw, 24px)",
+            top: 16,
+            left: 16,
             background: "#d97706",
             padding: "5px 14px",
             fontSize: 10,
@@ -529,70 +531,99 @@ function ProjectCard({ project, onOpen, wide }) {
             textTransform: "uppercase",
             color: "white",
             fontWeight: 600,
+            lineHeight: 1.4,
           }}
         >
           {project.category}
         </div>
 
-        <h3
-          style={{
-            fontFamily: "'Playfair Display', serif",
-            fontSize: "clamp(18px, 2.5vw, 28px)",
-            fontWeight: 700,
-            color: "white",
-            margin: "0 0 8px",
-            lineHeight: 1.2,
-          }}
-        >
-          {project.title}
-        </h3>
-        <p
-          style={{
-            fontSize: 12,
-            letterSpacing: 2,
-            textTransform: "uppercase",
-            color: "rgba(255,255,255,0.65)",
-            margin: 0,
-          }}
-        >
-          {project.location} · {project.year}
-        </p>
-
-        {/* hover reveal */}
+        {/* Bottom content panel */}
         <div
           style={{
-            marginTop: 20,
-            opacity: hovered ? 1 : 0,
-            transform: hovered ? "translateY(0)" : "translateY(12px)",
-            transition: "all 0.35s",
+            padding: wide ? "28px 32px" : "20px 24px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 0,
           }}
         >
+          {/* Title */}
+          <h3
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: wide ? "clamp(20px, 2.5vw, 30px)" : "clamp(18px, 2vw, 24px)",
+              fontWeight: 700,
+              color: "white",
+              margin: 0,
+              lineHeight: 1.25,
+            }}
+          >
+            {project.title}
+          </h3>
+
+          {/* Location & Year */}
           <p
             style={{
-              fontSize: 14,
-              lineHeight: 1.7,
-              color: "rgba(255,255,255,0.8)",
-              margin: "0 0 18px",
-              fontWeight: 300,
-              maxWidth: 480,
+              fontSize: 11,
+              letterSpacing: 1.5,
+              textTransform: "uppercase",
+              color: "rgba(255,255,255,0.55)",
+              margin: "8px 0 0",
+              lineHeight: 1.4,
             }}
           >
-            {project.description}
+            {project.location}  ·  {project.year}
           </p>
+
+          {/* Accent line */}
           <div
             style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              fontSize: 11,
-              letterSpacing: 2,
-              textTransform: "uppercase",
-              color: "#d97706",
-              fontWeight: 600,
+              width: 36,
+              height: 2,
+              background: "#d97706",
+              marginTop: 12,
+              transition: "width 0.3s",
+              ...(hovered ? { width: 56 } : {}),
+            }}
+          />
+
+          {/* hover reveal */}
+          <div
+            style={{
+              maxHeight: hovered ? 200 : 0,
+              opacity: hovered ? 1 : 0,
+              transform: hovered ? "translateY(0)" : "translateY(8px)",
+              transition: "all 0.4s cubic-bezier(0.25,0.46,0.45,0.94)",
+              overflow: "hidden",
+              marginTop: hovered ? 14 : 0,
             }}
           >
-            View Project
-            <span style={{ fontSize: 18, lineHeight: 1 }}>→</span>
+            <p
+              style={{
+                fontSize: 13,
+                lineHeight: 1.7,
+                color: "rgba(255,255,255,0.75)",
+                margin: "0 0 16px",
+                fontWeight: 300,
+                maxWidth: 440,
+              }}
+            >
+              {project.description}
+            </p>
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                fontSize: 11,
+                letterSpacing: 2,
+                textTransform: "uppercase",
+                color: "#d97706",
+                fontWeight: 600,
+              }}
+            >
+              View Project
+              <span style={{ fontSize: 16, lineHeight: 1, transition: "transform 0.3s", transform: hovered ? "translateX(4px)" : "translateX(0)" }}>→</span>
+            </div>
           </div>
         </div>
       </div>
