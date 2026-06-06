@@ -34,8 +34,8 @@ const INFO = [
   {
     icon: "✉️",
     label: "Email",
-    lines: ["info@dsketcharchitecture.com"],
-    link: "mailto:info@dsketcharchitecture.com",
+    lines: ["vyshnapvvyshu@gmail.com"],
+    link: "mailto:vyshnapvvyshu@gmail.com",
     linkText: "Send Email →",
   },
 ];
@@ -59,21 +59,45 @@ function Contact() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
   const [focused, setFocused] = useState("");
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
+  e.preventDefault();
+  // Trim all input values
+  const trimmedForm = {
+    ...form,
+    name: form.name.trim(),
+    email: form.email.trim(),
+    phone: form.phone.trim(),
+    service: form.service.trim(),
+    budget: form.budget.trim(),
+    message: form.message.trim(),
   };
+  setForm(trimmedForm);
+  const newErrors = {};
+  if (!trimmedForm.name) newErrors.name = "Name is required";
+  if (!trimmedForm.email) newErrors.email = "Email is required";
+  else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(trimmedForm.email)) newErrors.email = "Invalid email";
+  if (!trimmedForm.phone) newErrors.phone = "Phone is required";
+  else if (!/^\+?\d+$/.test(trimmedForm.phone)) newErrors.phone = "Phone must contain only numbers";
+  if (!trimmedForm.service) newErrors.service = "Service is required";
+  if (!trimmedForm.budget) newErrors.budget = "Budget is required";
+  if (!trimmedForm.message) newErrors.message = "Message is required";
+  setErrors(newErrors);
+  if (Object.keys(newErrors).length === 0) {
+    setSubmitted(true);
+  }
+};;
 
   const inputStyle = (name) => ({
     width: "100%",
     background: "transparent",
     border: "none",
-    borderBottom: `1.5px solid ${focused === name ? "#d97706" : "#cbd5e1"}`,
+    borderBottom: `1.5px solid ${focused === name ? "#d97706" : errors[name] ? "#dc2626" : "#cbd5e1"}`,
     padding: "14px 0",
     fontSize: 15,
     color: "#0f172a",
@@ -163,10 +187,10 @@ function Contact() {
 
       {/* ── MAIN BODY ── */}
       <div className="contact-grid" style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1.5fr",
-          minHeight: 700,
-        }}>
+        display: "grid",
+        gridTemplateColumns: "1fr 1.5fr",
+        minHeight: 700,
+      }}>
         <style>{`
           @media (max-width: 768px) {
             .contact-grid {
@@ -263,7 +287,7 @@ function Contact() {
             </div>
           ))}
 
-         
+
         </div>
 
         {/* ── RIGHT: FORM ── */}
@@ -346,7 +370,7 @@ function Contact() {
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+              <form onSubmit={handleSubmit} noValidate style={{ display: "flex", flexDirection: "column", gap: 32 }}>
                 {/* Row 1 */}
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
                   <div>
@@ -361,6 +385,7 @@ function Contact() {
                       required
                       style={inputStyle("name")}
                     />
+                    {errors.name && <p style={{ color: "#dc2626", fontSize: 12, marginTop: 4 }}>{errors.name}</p>}
                   </div>
                   <div>
                     <label style={labelStyle}>Phone Number *</label>
@@ -368,12 +393,19 @@ function Contact() {
                       name="phone"
                       value={form.phone}
                       onChange={handleChange}
+                      onKeyPress={(e) => {
+                        const char = String.fromCharCode(e.which);
+                        if (!/[0-9+]/.test(char)) {
+                          e.preventDefault();
+                        }
+                      }}
                       onFocus={() => setFocused("phone")}
                       onBlur={() => setFocused("")}
                       placeholder="+91 XXXXX XXXXX"
                       required
                       style={inputStyle("phone")}
                     />
+                    {errors.phone && <p style={{ color: "#dc2626", fontSize: 12, marginTop: 4 }}>{errors.phone}</p>}
                   </div>
                 </div>
 
@@ -391,6 +423,7 @@ function Contact() {
                     required
                     style={inputStyle("email")}
                   />
+{errors.email && <p style={{ color: "#dc2626", fontSize: 12, marginTop: 4 }}>{errors.email}</p>}
                 </div>
 
                 {/* Row 3 */}
@@ -418,6 +451,7 @@ function Contact() {
                         <option key={s} value={s}>{s}</option>
                       ))}
                     </select>
+                    {errors.service && <p style={{ color: "#dc2626", fontSize: 12, marginTop: 4 }}>{errors.service}</p>}
                   </div>
                   <div>
                     <label style={labelStyle}>Budget Range</label>
@@ -444,6 +478,7 @@ function Contact() {
                       <option>₹50 Lakhs – 1 Crore</option>
                       <option>Above ₹1 Crore</option>
                     </select>
+                    {errors.budget && <p style={{ color: "#dc2626", fontSize: 12, marginTop: 4 }}>{errors.budget}</p>}
                   </div>
                 </div>
 
@@ -464,6 +499,7 @@ function Contact() {
                       lineHeight: 1.7,
                     }}
                   />
+                  {errors.message && <p style={{ color: "#dc2626", fontSize: 12, marginTop: 4 }}>{errors.message}</p>}
                 </div>
 
                 <button
@@ -505,21 +541,24 @@ function Contact() {
           loading="lazy"
         />
         {/* map label overlay */}
-        <div
-          style={{
-            position: "absolute",
-            top: 32,
-            left: 80,
-            background: "#0f172a",
-            padding: "20px 32px",
-            display: "flex",
-            flexDirection: "column",
-            gap: 4,
-          }}
-        >
-          <p style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: "#d97706", margin: 0, fontWeight: 600 }}>Our Location</p>
-          <p style={{ fontSize: 14, color: "white", margin: 0, fontWeight: 300 }}>Mongam, Malappuram — Kerala</p>
-        </div>
+        <a href="https://www.google.com/maps/place/D+-+SKETCH+Architecture/@11.1352792,76.0313445,645m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3ba6490922b36325:0xf13f737fa8f095f3!8m2!3d11.1352739!4d76.0339194!16s%2Fg%2F124s_jwhm?entry=ttu&g_ep=EgoyMDI2MDYwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+          <div
+            style={{
+              position: "absolute",
+              top: 32,
+              left: "50%",
+              transform: "translateX(-50%)",
+              background: "#0f172a",
+              padding: "20px 32px",
+              display: "flex",
+              flexDirection: "column",
+              gap: 4,
+            }}
+          >
+            <p style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: "#d97706", margin: 0, fontWeight: 600 }}>Our Location</p>
+            <p style={{ fontSize: 14, color: "white", margin: 0, fontWeight: 300 }}>Mongam, Malappuram — Kerala</p>
+          </div>
+        </a>
       </div>
     </section>
   );
