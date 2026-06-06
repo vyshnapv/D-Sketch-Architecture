@@ -312,6 +312,7 @@ function Navbar() {
           align-items: flex-start;
           justify-content: space-between;
           margin-bottom: 2.5rem;
+          padding-top: 1rem;
           flex-shrink: 0;
         }
 
@@ -522,31 +523,7 @@ function Navbar() {
         aria-label="Navigation menu"
       >
         <div className="nb-drawer-head">
-          <a className="nb-logo" href="#home" onClick={closeMenu}>
-            <div className="nb-logo-main">
-              <span className="nb-logo-d">D</span>
-              <span className="nb-logo-dash">–</span>
-              <span className="nb-logo-sketch">Sketch</span>
-            </div>
-            <div className="nb-logo-tag">
-              <div className="nb-logo-line" />
-              <span className="nb-logo-sub">Architecture</span>
-            </div>
-          </a>
-          <button
-            className="nb-drawer-close"
-            onClick={closeMenu}
-            aria-label="Close menu"
-          >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path
-                d="M1 1L13 13M13 1L1 13"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
+          
         </div>
 
         <div className="nb-drawer-links">

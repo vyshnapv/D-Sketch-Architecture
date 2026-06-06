@@ -162,13 +162,18 @@ function Contact() {
       </div>
 
       {/* ── MAIN BODY ── */}
-      <div
-        style={{
+      <div className="contact-grid" style={{
           display: "grid",
           gridTemplateColumns: "1fr 1.5fr",
           minHeight: 700,
-        }}
-      >
+        }}>
+        <style>{`
+          @media (max-width: 768px) {
+            .contact-grid {
+              grid-template-columns: 1fr !important;
+            }
+          }
+        `}</style>
         {/* ── LEFT: INFO PANEL ── */}
         <div
           style={{
