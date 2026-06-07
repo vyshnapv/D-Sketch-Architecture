@@ -192,13 +192,13 @@ function Footer() {
             <div>
               <p className="footer-contact-label">Email</p>
               <a
-                href="mailto:info@dsketcharchitecture.com"
+                href="mailto:coregrid.solutions4@gmail.com"
                 className="footer-contact-text"
                 style={{ textDecoration: "none", display: "block" }}
                 onMouseEnter={(e) => (e.target.style.color = "#d97706")}
                 onMouseLeave={(e) => (e.target.style.color = "#e2e8f0")}
               >
-                info@dsketcharchitecture.com
+                coregrid.solutions4@gmail.com
               </a>
             </div>
           </div>

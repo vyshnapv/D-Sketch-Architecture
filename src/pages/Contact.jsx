@@ -34,8 +34,8 @@ const INFO = [
   {
     icon: "✉️",
     label: "Email",
-    lines: ["vyshnapvvyshu@gmail.com"],
-    link: "mailto:vyshnapvvyshu@gmail.com",
+    lines: ["coregrid.solutions4@gmail.com"],
+    link: "mailto:coregrid.solutions4@gmail.com",
     linkText: "Send Email →",
   },
 ];
